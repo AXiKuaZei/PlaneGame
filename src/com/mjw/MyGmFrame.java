@@ -1,8 +1,6 @@
 package com.mjw;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Rectangle;
+
+import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
@@ -10,22 +8,25 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.*;
-
-public class MyGmFrame extends JFrame{
+public class MyGmFrame extends Frame {
 	Plane plane =new Plane();
-	Bullet[] bullet = new Bullet[24];
+	Bullet[] bullet = new Bullet[10];
 	List<ShootShell> shells = new ArrayList<>();
-	Image nightImage=GameUtils. getPic("night.jpg");
+//	Image nightImage=GameUtils. getPic("night.jpg");
 	public static void main(String[] args) {
 		MyGmFrame myGmFrame = new MyGmFrame();
 		myGmFrame.lauchFrame();
 	}
 	
 	public void paint(Graphics g) {//自动被调用，g相当于一支画笔
-		super.paint(g);
-		plane.draw(g);
+//		super.paint(g);
 		Color c = g.getColor();
+
+		g.setColor(getBackground());
+		g.fillRect(0, 0, getWidth(), getHeight());
+
+		plane.draw(g);
+
 		Bullet b;
 		ShootShell ss;
 		Rectangle rct;
@@ -54,7 +55,7 @@ public class MyGmFrame extends JFrame{
 	
 	//initialize the game
 	public void lauchFrame() {
-		this.setTitle("飞机游戏");
+		this.setName("Plane Game");
 		this.setVisible(true);
 		this.setSize(Constant.xFrame, Constant.yFrame);
 		this.setLocation(300, 100);
@@ -88,7 +89,7 @@ public class MyGmFrame extends JFrame{
 			while(true) {
 				if(plane.shoot) shells.add(new ShootShell(plane));		
 				try {
-					Thread.sleep(100);
+					Thread.sleep(40);
 				} catch (InterruptedException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -146,5 +147,13 @@ public class MyGmFrame extends JFrame{
 		paint(gOff);
 		g.drawImage(offScreenImage, 0, 0, null);
 	}
+
+//	public void update(Graphics g){
+//		offScreenImage = createImage(this.getWidth(), this.getHeight());//创建图形缓冲区
+//		Graphics GraImage = offScreenImage.getGraphics();//获取图形缓冲区的图形上下文
+//		paint(GraImage);//用paint方法中编写的绘图过程对图形缓冲区绘图
+//		GraImage.dispose();//释放图形上下文资源
+//		g.drawImage(offScreenImage, 0, 0, this);//将图形缓冲区绘制到屏幕上
+//	}
 }
 
