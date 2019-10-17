@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
 
-public class Plane extends GameObject{
+public class Plane extends com.mjw.GameObject {
 	boolean left=false;
 	boolean up=false;
 	boolean right=false;
@@ -28,7 +28,7 @@ public class Plane extends GameObject{
 		if(live) {
 			g.drawImage(planeImage, x, y, null);		
 		}else {
-			System.out.println("ƒ„—æÀ¿¡À");
+			System.out.println("‰Ω†Ê≠ª‰∫Ü");
 		}
 	}
 
